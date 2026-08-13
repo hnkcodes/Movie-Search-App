@@ -1,5 +1,5 @@
 export const mood_option = [
-  { option: "😊 Feel Good,", input: "&with_genres=35|16|10751|10749" },
+  { option: "😊 Feel Good", input: "&with_genres=35|16|10751|10749" },
   { option: "😭 Need a Good Cry", input: "&with_genres=18 | 10749" },
   { option: "😂 Laugh Out Loud", input: "&with_genres=35" },
   { option: "️❤️ Romantic", input: "&with_genres=10749" },
@@ -16,7 +16,7 @@ export const runtime_option = [
     option: "120~150min",
     input: "&with_runtime.lte=150&with_runtime.gte=120",
   },
-  { option: "150min", input: "&with_runtime.gte=150" },
+  { option: "150min~", input: "&with_runtime.gte=150" },
 ];
 
 export const review_option = [

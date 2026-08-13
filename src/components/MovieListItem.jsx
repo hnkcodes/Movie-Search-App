@@ -8,7 +8,6 @@ export default function MovieItem({ movie }) {
         <img
           src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`}
           alt={movie.title}
-          className="movie-poster"
         />
         <p>{movie.title}</p>
         <p>{date}</p>

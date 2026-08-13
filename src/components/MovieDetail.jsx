@@ -43,7 +43,7 @@ export default function MovieDetail({ bookmark }) {
         <p>{data.runtime} min</p>
       </div>
       <div className="movie-item-container">
-        <div>
+        <div className="movie-item-left-container">
           <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} />
         </div>
         <div className="movie-item-right-container">

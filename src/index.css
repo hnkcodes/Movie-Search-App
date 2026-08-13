@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -71,6 +72,7 @@ a {
 .search-list-item {
   border: 1px solid #ffc078;
   border-radius: 4px;
+  min-height: 4.5rem;
 }
 
 .search-list-item-button {
@@ -99,15 +101,10 @@ a {
   padding: 0;
 }
 
-.movie-poster {
-  width: 6rem;
-}
-
 .movie-item-container {
   display: grid;
   gap: 1rem;
-  background-size: cover;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 0.8fr 1.2fr;
 }
 
 .button-container {
@@ -161,14 +158,19 @@ a {
   font-size: 1.2rem;
 }
 
-.movie-item-container img {
-  height: 60%;
-}
-
 .movie-item-right-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.movie-item-left-container {
+  display: grid;
+}
+
+.movie-item-container img {
+  width: 70%;
+  height: auto;
 }
 
 .movie-item-detailed-info {
@@ -200,33 +202,88 @@ a {
   margin-top: 1.2rem;
 }
 
+.movie-list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-list-item img {
+  width: 100%;
+}
+
 .movie-list-item:hover {
   color: #ff922b;
 }
 
 .footer {
   margin-top: 2.4rem;
+  margin-bottom: 0.6rem;
+  color: #fff4e6;
+}
+
+.footer-content {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
-  color: #fff4e6;
 }
 
 .tmdb-logo {
   width: 2.4rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .movie-item-container {
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+
   .list-box {
     grid-template-columns: repeat(5, 1fr);
+  }
+
+  .search-list-item-button {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .list-box {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .movie-item-container {
     grid-template-columns: 1fr;
   }
 
+  .movie-item-left-container {
+    justify-items: center;
+  }
+
   .movie-item-container img {
-    height: 100%;
+    width: 50%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-list {
+    justify-content: space-between;
+    padding: 1.2rem 2.4rem;
+  }
+
+  .list-box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer {
+    margin-left: 1.2rem;
+    margin-right: 1.3rem;
+    font-size: 0.8rem;
+  }
+
+  .search-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
