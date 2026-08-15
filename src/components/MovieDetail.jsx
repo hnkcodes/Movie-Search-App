@@ -33,10 +33,6 @@ export default function MovieDetail({ bookmark }) {
 
   return (
     <div>
-      <Link to="/">
-        <button className="act-button go-back-button">Go Home</button>
-      </Link>
-
       <h3 className="movie-item-title">{data.title}</h3>
       <div className="movie-item-detailed-info">
         <p>Release on {date}</p>
@@ -44,14 +40,25 @@ export default function MovieDetail({ bookmark }) {
       </div>
       <div className="movie-item-container">
         <div className="movie-item-left-container">
-          <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} />
+          {data.poster_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
+              alt={`${data.title} poster`}
+            />
+          ) : (
+            <div className="no-image-container card">
+              <span className="material-symbols-outlined movie-item-no-image">
+                theaters
+              </span>
+            </div>
+          )}
         </div>
         <div className="movie-item-right-container">
-          <div>
+          <div className="card">
             <h4>Overview</h4>
-            <p>{data.overview}</p>
+            <p className="movie-item-overview">{data.overview}</p>
           </div>
-          <div>
+          <div className="card">
             <h4>Main Cast</h4>
             <ul>
               {mainCast.map((item) => (
@@ -64,7 +71,7 @@ export default function MovieDetail({ bookmark }) {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="card">
             <h4>Director</h4>
             <ul>
               {director.map((item) => (
@@ -72,7 +79,7 @@ export default function MovieDetail({ bookmark }) {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="card">
             <h4>Screen Play</h4>
             <ul>
               {screenplay.map((item) => (
@@ -80,7 +87,7 @@ export default function MovieDetail({ bookmark }) {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="card">
             <h4>Streaming ({streaming.length})</h4>
             <ul>
               {streaming.map((item) => (
@@ -88,19 +95,18 @@ export default function MovieDetail({ bookmark }) {
               ))}
             </ul>
           </div>
-          <div>
-            {rental.length > 0 && (
-              <>
-                <h4>Rental ({rental.length})</h4>
-                <ul>
-                  {rental.map((item) => (
-                    <li>{item["provider_name"]}</li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </div>
-          <div>
+
+          {rental.length > 0 && (
+            <div className="card">
+              <h4>Rental ({rental.length})</h4>
+              <ul>
+                {rental.map((item) => (
+                  <li>{item["provider_name"]}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <div className="card">
             <h4>Average Vote</h4>
             <p>Over {Math.floor(data.vote_average)}</p>
           </div>

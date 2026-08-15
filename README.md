@@ -5,7 +5,7 @@ A movie search application that helps users discover and browse movies.
 ## Screenshot
 
 ![Home Page](/screenshots/home.png)
-![Detail Page](/screenshots/movie%20detail.png)
+![Detail Page](/screenshots/movie-detail.png)
 
 ## Live Demo
 
