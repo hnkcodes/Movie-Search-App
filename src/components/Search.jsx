@@ -27,7 +27,7 @@ export default function Search({ onSearch, setError }) {
   }
 
   async function handleSearch() {
-    const url = `https://api.themoviedb.org/3/discoverppp/movie?include_adult=false&language=en-US&sort_by=popularity.desc${inputs.mood}${inputs.runtime}${inputs.review}${inputs.releaseDate}`;
+    const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&sort_by=popularity.desc${inputs.mood}${inputs.runtime}${inputs.review}${inputs.releaseDate}`;
 
     try {
       setIsLoading(true);
