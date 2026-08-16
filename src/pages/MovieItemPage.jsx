@@ -6,7 +6,7 @@ export default function MovieItemPage() {
   return (
     <>
       <MovieDetail />
-      <h4 className="page-headline">Similar Movie</h4>
+      <h4 className="page-headline">You also might want to see...</h4>
       <SimilarMovie />
     </>
   );

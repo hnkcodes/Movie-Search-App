@@ -9,7 +9,9 @@ import {
 import { options } from "../util/api-request-options";
 import SearchItem from "./SearchItem";
 
-export default function Search({ onSearch }) {
+export default function Search({ onSearch, setError }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [inputs, setInputs] = useState({
     mood: "",
     runtime: "",
@@ -25,12 +27,19 @@ export default function Search({ onSearch }) {
   }
 
   async function handleSearch() {
-    const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&sort_by=popularity.desc${inputs.mood}${inputs.runtime}${inputs.review}${inputs.releaseDate}`;
+    const url = `https://api.themoviedb.org/3/discoverppp/movie?include_adult=false&language=en-US&sort_by=popularity.desc${inputs.mood}${inputs.runtime}${inputs.review}${inputs.releaseDate}`;
 
-    const resData = await fetch(url, options);
-
-    const data = await resData.json();
-    onSearch(data.results);
+    try {
+      setIsLoading(true);
+      const resData = await fetch(url, options);
+      if (!resData.ok) throw new Error("Failed to Fetch Data");
+      const data = await resData.json();
+      onSearch(data.results);
+    } catch (err) {
+      setError({ message: err.message || "Could not fetch Movies" });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -67,23 +76,14 @@ export default function Search({ onSearch }) {
         inputs={inputs}
       />
       <div className="button-container">
-        <button onClick={handleSearch} className="act-button search-button">
-          Search
+        <button
+          onClick={handleSearch}
+          className="act-button search-button"
+          disabled={isLoading}
+        >
+          {isLoading ? "Searching..." : "Discover"}
         </button>
       </div>
     </>
   );
 }
-
-const loader = async function (url) {
-  const resData = await fetch(url, options);
-
-  if (!resData.ok) {
-    throw new Response("Could not fetch movies.", {
-      status: 500,
-    });
-  }
-
-  const data = await resData.json();
-  return data.results;
-};
